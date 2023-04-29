@@ -7,6 +7,7 @@ import {
   MdOutlineToken,
   MdOutlineExplore,
   MdEventAvailable,
+  MdVideoCall,
 } from "react-icons/md";
 
 const NavLink = ({ label, path, icon }) => {
@@ -50,6 +51,11 @@ const navData = [
     path: "/explore",
     icon: <MdOutlineExplore size={25} />,
   },
+  {
+    label: "Huddle",
+    path: "/huddle",
+    icon: <MdVideoCall size={25} />,
+  }
 ];
 
 const Sidebar = () => {
