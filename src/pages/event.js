@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Layout from "@/components/layout/layout";
 import Input from "@/components/form-elements/input";
@@ -6,7 +6,7 @@ import Button from "@/components/form-elements/button";
 import Banner from "@/components/banner";
 import Upload from "@/components/form-elements/upload";
 
-const Dashboard = () => {
+const Event = () => {
   const [banner, setBanner] = useState("");
 
   return (
@@ -27,12 +27,14 @@ const Dashboard = () => {
             height={200}
           />
           <Upload
-              id="banner"
-              name="banner"
-              label="Event Banner"
-              type="file"
-              onChange={() => {setBanner()}}
-            />
+            id="banner"
+            name="banner"
+            label="Event Banner"
+            type="file"
+            onChange={() => {
+              setBanner();
+            }}
+          />
           <Input
             id="name"
             name="name"
@@ -76,4 +78,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Event;

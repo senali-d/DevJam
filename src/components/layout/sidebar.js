@@ -2,7 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { Tooltip } from "@chakra-ui/react";
 import { AiOutlineHome } from "react-icons/ai";
-import { MdSpaceDashboard, MdOutlineToken, MdOutlineExplore, MdEventAvailable } from "react-icons/md";
+import {
+  MdSpaceDashboard,
+  MdOutlineToken,
+  MdOutlineExplore,
+  MdEventAvailable,
+} from "react-icons/md";
 
 const NavLink = ({ label, path, icon }) => {
   return (
@@ -23,42 +28,38 @@ const navData = [
   {
     label: "Home",
     path: "/",
-    icon: <AiOutlineHome size={25} />
+    icon: <AiOutlineHome size={25} />,
   },
   {
     label: "Dashboard",
     path: "/dashboard",
-    icon: <MdSpaceDashboard size={25} />
+    icon: <MdSpaceDashboard size={25} />,
   },
   {
     label: "Token",
     path: "/token",
-    icon: <MdOutlineToken size={25} />
+    icon: <MdOutlineToken size={25} />,
   },
   {
     label: "Event",
     path: "/event",
-    icon: <MdEventAvailable size={25} />
+    icon: <MdEventAvailable size={25} />,
   },
   {
     label: "EXPLORE EVENT",
     path: "/explore",
-    icon: <MdOutlineExplore size={25} />
-  }
-]
+    icon: <MdOutlineExplore size={25} />,
+  },
+];
 
 const Sidebar = () => {
   return (
     <aside className="fixed min-h-[100vh] w-[60px] border-r border-[#5b7a8a] py-5 dark:border-[#3d7f91]">
       <div>
         <ul className="flex flex-col items-center justify-center space-y-4 w-full">
-          {
-            navData.map(({path, label, icon}) => {
-              return (
-                <NavLink key={path} label={label} path={path} icon={icon} />
-              )
-            })
-          }
+          {navData.map(({ path, label, icon }) => {
+            return <NavLink key={path} label={label} path={path} icon={icon} />;
+          })}
         </ul>
       </div>
     </aside>

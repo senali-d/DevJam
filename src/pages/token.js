@@ -5,7 +5,7 @@ import Input from "@/components/form-elements/input";
 import Button from "@/components/form-elements/button";
 import Banner from "@/components/banner";
 
-const Dashboard = () => {
+const Token = () => {
   return (
     <Layout headTitle="Create Token">
       <div className="flex flex-col space-y-8 justify-center items-center max-w-[800px] mx-auto pb-32 pl-[60px] lg:pl-0">
@@ -82,4 +82,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Token;
