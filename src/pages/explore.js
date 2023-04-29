@@ -66,7 +66,7 @@ const Explore = () => {
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
       </div>
-      <div className="flex flex-col flex-wrap md:flex-row items-center md:items-start md:justify-start">
+      <div className="flex flex-col flex-wrap md:flex-row items-center md:items-start md:justify-start pl-[60px] lg:pl-0">
         {cardData.map((card) => (
           <Card
             title={card.title}
