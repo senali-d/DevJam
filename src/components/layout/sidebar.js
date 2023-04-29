@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Tooltip } from "@chakra-ui/react";
 import { AiOutlineHome } from "react-icons/ai";
-import { MdSpaceDashboard } from "react-icons/md";
+import { MdSpaceDashboard, MdOutlineToken, MdOutlineExplore, MdEventAvailable } from "react-icons/md";
 
 const NavLink = ({ label, path, icon }) => {
   return (
@@ -29,6 +29,21 @@ const navData = [
     label: "Dashboard",
     path: "/dashboard",
     icon: <MdSpaceDashboard size={25} />
+  },
+  {
+    label: "Token",
+    path: "/token",
+    icon: <MdOutlineToken size={25} />
+  },
+  {
+    label: "Event",
+    path: "/event",
+    icon: <MdEventAvailable size={25} />
+  },
+  {
+    label: "EXPLORE EVENT",
+    path: "/explore",
+    icon: <MdOutlineExplore size={25} />
   }
 ]
 

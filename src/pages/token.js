@@ -75,7 +75,7 @@ const Dashboard = () => {
             onChange={() => {}}
             helper="Only whitelisted addresses will be able to mint your token."
           />
-          <Button label="Create" onClick={() => {}} />
+          <Button label="Create Token" onClick={() => {}} />
         </form>
       </div>
     </Layout>
