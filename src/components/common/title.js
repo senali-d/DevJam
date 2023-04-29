@@ -1,12 +1,10 @@
 import { GiArchBridge } from "react-icons/gi";
-import { textColor } from "@/utils/color";
 
 const Title = ({title}) => {
-  const { light, dark } = textColor;
   return (
     <>
-      <GiArchBridge size={25} className={`text-[${light}] dark:text-[${dark}]`} />
-      <h1 className={`text-[${light}] font-semibold text-xl dark:text-[${dark}]`}>
+      <GiArchBridge size={25} className="text-[#5b7a8a] dark:text-[#3d7f91]" />
+      <h1 className="text-[#5b7a8a] font-semibold text-xl dark:text-[#3d7f91]">
         {title}
       </h1>
     </>

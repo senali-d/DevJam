@@ -1,12 +1,11 @@
 import { BiSun, BiMoon } from "react-icons/bi";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import { textColor } from "@/utils/color";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
-  const { light, dark } =  textColor
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -25,13 +24,13 @@ const Navbar = () => {
             <BiMoon
               size="25"
               onClick={switchTheme}
-              className={`text-[${light}] hover:cursor-pointer dark:text-[${dark}]`}
+              className="text-[#5b7a8a] hover:cursor-pointer dark:text-[#3d7f91]"
             />
           ) : (
             <BiSun
-              size="20"
+              size="25"
               onClick={switchTheme}
-              className={`text-[${light}] hover:cursor-pointer dark:text-[${dark}]`}
+              className="text-[#5b7a8a] hover:cursor-pointer dark:text-[#3d7f91]"
             />
           )}
         </div>
