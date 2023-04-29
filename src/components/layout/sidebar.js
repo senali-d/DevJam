@@ -37,8 +37,8 @@ const navData = [
     icon: <MdSpaceDashboard size={25} />,
   },
   {
-    label: "Token",
-    path: "/token",
+    label: "NFT",
+    path: "/nft",
     icon: <MdOutlineToken size={25} />,
   },
   {

@@ -20,8 +20,8 @@ const Event = () => {
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
           <Image
-            className="mx-auto"
-            src={banner !== "" ? banner : "/token.png"}
+            className="mx-auto w-full"
+            src={banner !== "" ? banner : "/banner.jpg"}
             alt="preview"
             width={200}
             height={200}

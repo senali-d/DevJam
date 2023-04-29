@@ -10,14 +10,14 @@ const Upload = ({ id, name, label, type, accept, onChange }) => {
       </FormLabel>
       <button
         leftIcon={<Icon as={FiFile} />}
-        className="max-w-full text-[#5b7a8a] py-2 rounded border border-[#3d7f91] hover:border-white mb-5 md:mb-0"
+        className="max-w-full h-[38px] text-[#5b7a8a] py-2 rounded border border-[#3d7f91] hover:border-gray-300 mb-5 md:mb-0"
       >
         Upload
         <input
           id={id}
           name={name}
           type={type || "file"}
-          className="opacity-0 absolute left-0 right-0 max-w-full"
+          className="bg-red-500 w-full relative top-[-32px] h-[36px] opacity-0"
           accept={accept || "image/*"}
           onChange={onChange}
         />

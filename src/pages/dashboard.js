@@ -35,9 +35,9 @@ const Card = ({ heading, title, img, link, color }) => {
 
 const cardData = [
   {
-    heading: "LAUNCH A NFT TOKEN",
-    link: "/token",
-    title: "TOKEN",
+    heading: "LAUNCH A NFT",
+    link: "/nft",
+    title: "NFT",
     img: "/token.png",
     color: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 "
   },
