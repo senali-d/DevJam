@@ -1,21 +1,23 @@
 import React from "react";
-import Image from "next/image";
+import Button from "@/components/form-elements/button";
 import Layout from "@/components/layout/layout";
 import Banner from "@/components/banner";
 
-const Card = ({ title, img, date, description }) => {
+const Card = ({ title, img, date }) => {
+  console.log(img);
   return (
-    <div className="w-[90%] md:w-[32%] flex flex-col mb-[1%] mr-[1%]">
-      <div className="flex flex-col items-center bg-gray-300 rounded-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[150px]">
-        <div className="flex mx-auto justify-center w-[100%]">
-          <Image src={img} width="120" height="100" alt="Icon" />
-        </div>
-        <div className="px-6 py-4 w-full">
-          <div className="font-bold text-xl mb-2 text-center text-[#3d7f91]">
+    <div className="event-card w-[90%] md:w-[32%] flex flex-col mb-[1%] mr-[1%]">
+      <div
+        className={`flex flex-col items-center bg-[url('../../public/banner.jpg')] bg-center rounded-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[150px]`}
+      >
+        <div className="event-detail hidden flex-col items-center justify-center bg-[#00000090] w-full min-h-[100px] md:min-h-[150px]">
+          <div className="font-bold text-xl mb-2 text-center text-[#ccc]">
             {title}
           </div>
-          <div className="text-[#3d7f91]">Event on: {date}</div>
-          <div className="mb-2 text-[#3d7f91]">{description}</div>
+          <div className="text-[#ccc]">{date}</div>
+          <div className="w-fit">
+            <Button label="Create Event" onClick={() => {}} />
+          </div>
         </div>
       </div>
     </div>
@@ -25,31 +27,31 @@ const Card = ({ title, img, date, description }) => {
 const cardData = [
   {
     title: "Event",
-    img: "/token.png",
+    img: "../../public/banner.jpg",
     date: "2023-01-01",
     description: "Event description",
   },
   {
     title: "Event",
-    img: "/token.png",
+    img: "../../public/banner.jpg",
     date: "2023-01-01",
     description: "Event description",
   },
   {
     title: "Event",
-    img: "/token.png",
+    img: "../../public/banner.jpg",
     date: "2023-01-01",
     description: "Event description",
   },
   {
     title: "Event",
-    img: "/token.png",
+    img: "../../public/banner.jpg",
     date: "2023-01-01",
     description: "Event description",
   },
   {
     title: "Event",
-    img: "/token.png",
+    img: "../../public/banner.jpg",
     date: "2023-01-01",
     description: "Event description",
   },
