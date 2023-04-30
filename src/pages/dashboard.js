@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "@/components/layout/layout";
 import Title from "@/components/common/title";
+import Table from "@/components/table";
 
 const Card = ({ heading, title, img, link, color }) => {
   return (
@@ -39,44 +40,60 @@ const cardData = [
     link: "/nft",
     title: "NFT",
     img: "/token.png",
-    color: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 "
+    color: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 ",
   },
   {
     heading: "CREATE EVENT",
     link: "/event",
     title: "EVENT",
     img: "/token.png",
-    color: "bg-gradient-to-r from-blue-400 to-emerald-400"
+    color: "bg-gradient-to-r from-blue-400 to-emerald-400",
   },
   {
     heading: "EXPLORE EVENT",
     link: "/explore",
     title: "EXPLORE",
     img: "/token.png",
-    color: "bg-gradient-to-r from-red-800 via-yellow-600 to-yellow-500"
-  }
-]
+    color: "bg-gradient-to-r from-red-800 via-yellow-600 to-yellow-500",
+  },
+];
+
+const headers = ["Event Name", "Date", "Participants Count", ""];
+
+const eventData = [
+  {
+    name: "event",
+    date: "2014-1-1",
+    participants: 10,
+  },
+  {
+    name: "event",
+    date: "2014-1-10",
+    participants: 10,
+  },
+];
 
 const Dashboard = () => {
   return (
     <Layout headTitle="Dashboard">
       <div className="flex flex-col w-full pl-[80px] lg:pl-0 pb-10 md:pr-5">
         <div className="flex space-x-2 items-center mb-10 justify-center md:justify-start">
-          <Title title="DASHBOARD"/>
+          <Title title="DASHBOARD" />
         </div>
         <div className="flex flex-col md:flex-row items-center space-y-4 md:space-x-4 md:space-y-0 md:items-start md:justify-start">
-          {
-            cardData.map((card) => (
-              <Card
-                heading={card.heading}
-                link={card.link}
-                title={card.title}  
-                img={card.img}
-                color={card.color}
-              />
-            ))
-          }
+          {cardData.map((card) => (
+            <Card
+              heading={card.heading}
+              link={card.link}
+              title={card.title}
+              img={card.img}
+              color={card.color}
+            />
+          ))}
         </div>
+      </div>
+      <div>
+        <Table headers={headers} data={eventData} />
       </div>
     </Layout>
   );
