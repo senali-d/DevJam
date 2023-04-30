@@ -51,3 +51,7 @@ body {
 .event-card:hover .event-detail{
   display: flex;
 }
+
+.chakra-modal__content {
+  background-color: #465b61 !important;
+}
