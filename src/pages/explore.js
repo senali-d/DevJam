@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useDisclosure } from '@chakra-ui/react'
-import Button from "@/components/form-elements/button";
-import Layout from "@/components/layout/layout";
-import Banner from "@/components/banner";
 import {
   Modal,
   ModalOverlay,
@@ -12,19 +9,38 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import {
+  BiLinkExternal,
+} from "react-icons/bi";
+import Button from "@/components/form-elements/button";
+import Layout from "@/components/layout/layout";
+import Link from "next/link";
 
 const Card = ({ title, img, onClick }) => {
   return (
-    <div className="event-card w-[90%] md:w-[31%] flex flex-col mb-[2%] mr-[2%] rounded-[30px] hover:drop-shadow-[35px_15px_15px_rgba(0,0,0,0.25)]">
+    <div className="event-card w-[90%] md:w-[31%] flex flex-col mb-[2%] mr-[2%] rounded-t-[30px]">
       <div
-        className={`flex flex-col items-center bg-[url('../../public/banner.jpg')] bg-center rounded-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[150px]`}
+        className={`flex flex-col items-center bg-[url('../../public/banner.jpg')] bg-cover bg-center bg-no-repeat rounded-t-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[200px]`}
       >
-        <div className="event-detail hidden flex-col items-center justify-center bg-[#00000090] w-full min-h-[100px] md:min-h-[150px]">
+        <div className="event-detail hidden flex-col items-center justify-center bg-[#00000090] w-full min-h-[100px] md:min-h-[200px]">
           <div className="font-bold text-xl mb-2 text-center text-[#ccc]">
             {title}
           </div>
           <div className="w-fit">
             <Button label="Create Event" onClick={onClick} />
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#3d7f9150] dark:bg-white flex w-full flex-col items-center justify-center rounded-b-[30px]">
+        <p className="dark:text-[#5b7a8a] text-[#3d7f91] text-xl py-2">View Name</p>
+        <div className="flex w-full px-2 pb-5">
+          <div className="flex w-1/2">
+            <p className="dark:text-[#5b7a8a] text-[#3d7f91]">2023-5-2</p>
+          </div>
+          <div className="flex w-1/2 justify-end">
+            <Link href="/">
+              <BiLinkExternal size={25} />
+            </Link>
           </div>
         </div>
       </div>
@@ -72,12 +88,12 @@ function ModalComponent({isOpen, onClose, data, onClick}) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <div className="text-[#ffffff]">{data?.title}</div>
+            <div className="text-[##3d7f91]">{data?.title}</div>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <div className="text-[#ffffff]">{data?.date}</div>
-            <div className="text-[#ffffff]">{data?.description}</div>
+            <div className="text-[##3d7f91]">{data?.date}</div>
+            <div className="text-[##3d7f91]">{data?.description}</div>
           </ModalBody>
 
           <ModalFooter>
@@ -98,14 +114,6 @@ const Explore = () => {
 
   return (
     <Layout headTitle="Explore Event">
-      <div className="flex flex-col space-y-8 justify-center items-center max-w-[800px] mx-auto pb-10 pl-[60px] lg:pl-0">
-        <Banner
-          image="/token.png"
-          title="Explore Event"
-          description="Mint a token on a fixed supply Already have a token? Import token into DevJam"
-          style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
-        />
-      </div>
       <div className="flex flex-col flex-wrap md:flex-row items-center md:items-start md:justify-start pl-[60px] lg:pl-0">
         {cardData.map((card) => (
           <Card

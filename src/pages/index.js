@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer fontColor="text-[#E4E4ED] hover:text-[#a1a1a1]" />
+      <Footer fontColor="text-[#E4E4ED] dark:text-[#E4E4ED] hover:text-[#a1a1a1]" />
     </>
   );
 }
