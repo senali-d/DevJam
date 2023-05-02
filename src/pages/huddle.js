@@ -1,6 +1,9 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/layout/layout";
+import Button from "@/components/form-elements/button";
+import { MdOutlineToken } from "react-icons/md";
 
 const Card = ({ title, img }) => {
   return (
@@ -43,14 +46,14 @@ const cardData = [
   {
     title: "Person",
     img: "/token.png",
-  }
+  },
 ];
 
 const Explore = () => {
   return (
-    <Layout headTitle="Huddle">
+    <Layout headTitle="Huddle" isFooter={false}>
       <div className="flex flex-col flex-row flex-wrap md:flex-row items-center md:items-start md:justify-start pl-[60px] lg:pl-0">
-        <div className="w-[90%] md:w-[78%] flex flex-col mb-3 md:mb-0 mr-[2%]">
+        <div className="w-full flex flex-col mb-3 md:mb-0">
           <div className="flex flex-col items-center justify-center bg-gray-300 rounded-[30px] overflow-hidden shadow-lg  min-h-[calc(100vh-200px)]">
             <div className="flex mx-auto flex-col items-center justify-center w-full">
               <Image src="/token.png" width="120" height="100" alt="Icon" />
@@ -60,15 +63,16 @@ const Explore = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-[90%] md:w-[20%] md:flex-col max-h-[calc(100vh-200px)] overflow-x-scroll md:overflow-x-hidden md:overflow-y-scroll">
-          {cardData.map((card) => (
-            <Card
-              title={card.title}
-              img={card.img}
-              date={card.date}
-              description={card.description}
-            />
-          ))}
+        <div className="w-full flex flex-col mt-3 md:mb-0">
+          <div className="flex flex-row mx-auto items-center justify-center w-full">
+            <div className="flex items-center w-[50%] min-h-[80px] bg-green-100">
+              <div className="w-fit">
+                <Button label="Join Lobby" onClick={() => {}} />
+              </div>
+            </div>
+            <div className="w-[50%] min-h-[80px] bg-green-100">
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

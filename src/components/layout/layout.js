@@ -4,7 +4,7 @@ import Footer from "./footer";
 import Sidebar from "./sidebar";
 import CustomHead from "@/components/common/head";
 
-const Layout = ({ children, headTitle, headContent }) => {
+const Layout = ({ children, headTitle, headContent, isFooter=true }) => {
   return (
     <>
       <CustomHead title={headTitle} content={headContent} />
@@ -15,7 +15,9 @@ const Layout = ({ children, headTitle, headContent }) => {
           <div className="pt-[20px]">{children}</div>
         </div>
       </main>
-      <Footer />
+      {
+        isFooter && <Footer />
+      }
     </>
   );
 };
