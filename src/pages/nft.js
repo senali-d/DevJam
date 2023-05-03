@@ -104,14 +104,20 @@ const Token = () => {
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
-          <Image
+          {image == "" ? (<Image
             className="mx-auto"
             src={image !== "" ? image : "/token.png"}
             alt="preview"
-            loader={() => image}
             width={200}
             height={200}
-          />
+          />) : (<Image
+            className="mx-auto"
+            src={image !== "" ? image : "/token.png"}
+            loader={() => image}
+            alt="preview"
+            width={200}
+            height={200}
+          />)}
           <Upload
             id="image"
             name="image"
