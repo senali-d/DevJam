@@ -32,12 +32,12 @@ const Table = ({ headers, data }) => {
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                   <div className="text-gray-700 dark:text-gray-200">
-                    {i.date}
+                    {i.description}
                   </div>
                 </td>
                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                   <div className="text-gray-700 dark:text-gray-200">
-                    {i.participants}
+                    {i.price}
                   </div>
                 </td>
 
