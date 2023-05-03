@@ -4,8 +4,11 @@ import Link from "next/link";
 import Layout from "@/components/layout/layout";
 import Title from "@/components/common/title";
 import Table from "@/components/table";
-
+import { useAccount, useContractRead } from "wagmi";
+import eventABI from "../contracts/event.json"
+import { useEffect } from "react";
 const Card = ({ heading, title, img, link, color }) => {
+
   return (
     <div className="w-[90%] md:w-1/3 flex flex-col">
       <h1 className="text-[#9f9f9f] font-bold text-sm pl-5 pb-3 dark:text-[#605e8a]">
@@ -61,19 +64,40 @@ const cardData = [
 const headers = ["Event Name", "Date", "Participants Count", ""];
 
 const eventData = [
-  {
-    name: "event",
-    date: "2014-1-1",
-    participants: 10,
-  },
-  {
-    name: "event",
-    date: "2014-1-10",
-    participants: 10,
-  },
+
 ];
 
 const Dashboard = () => {
+  const {address} = useAccount();
+  const { data, isError, isLoading } = useContractRead({
+    address: "0x0d1Ef2b6C016d9187BcaC389f78CA69Eec23031c",
+    abi: eventABI,
+    functionName: "getEventsByUser",
+    args: [address],
+    onSuccess: (data) => {
+      console.log("Succes");
+    },
+    onError: (error) => {
+      console.log("Error", error);
+    },
+  });
+
+  const fetchData = async () => {
+    for (let nft of data) {
+      eventData.push({
+        name:nft.name,
+        date:nft.date,
+        participants:nft.description
+      })
+      console.log(data);
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      fetchData()
+    }
+  }, [data]);
   return (
     <Layout headTitle="Dashboard">
       <div className="flex flex-col w-full pl-[80px] lg:pl-0 pb-10 md:pr-5">
