@@ -7,8 +7,8 @@ import Button from "@/components/form-elements/button";
 import Upload from "@/components/form-elements/upload";
 import Banner from "@/components/banner";
 import { Web3Storage } from "web3.storage";
-import { ABI } from "../contracts/launchpad.json"
-import { contracAddress } from "../utils/constant";
+import  ABI  from "../contracts/launchpad.json"
+import  contracAddress  from "../utils/constant";
 import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import {
@@ -30,18 +30,19 @@ const Token = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: contracAddress,
+    address: "0x2da724Bf044a7a0eb2e427ba35E3cD65B91C8beF",
     abi: ABI,
     functionName: "createNFT",
     args: [
       uri,
-      supply,
+      parseInt(supply),
       maxSupplyFlag == true ? 0 : 1,
       parseInt(price),
       address,
     ],
 
     onError: (error) => {
+      console.log(uri, supply, maxSupplyFlag == true ? 0 : 1, price, address);
       console.log("Error", error);
     },
     onSuccess: (result) => {
@@ -70,6 +71,7 @@ const Token = () => {
       .then(async (cid) => {
         setUri(`https://${cid}.ipfs.w3s.link/metadata.json`);
       });
+      console.log(uri);
   };
 
   useEffect(() => {
@@ -125,7 +127,6 @@ const Token = () => {
             type="file"
             onChange={(e) => {
               const image = URL.createObjectURL(e.target.files[0]);
-              setImage(image);
               const files = e.target.files;
               const client = new Web3Storage({
                 token:
@@ -201,9 +202,9 @@ const Token = () => {
             Upload
           </button>
           <button
-            onClick={(e) => {
+            onClick={ (e) => {
               e.preventDefault();
-            write();
+              write();
             }}
             className="w-full text-[#fffff] bg-violet-500 hover:bg-violet-600 focus:ring-1 focus:outline-none focus:ring-[#cfcfcf] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-none dark:bg-violet-500 dark:hover:bg-violet-600 dark:text-gray-100"
           >
