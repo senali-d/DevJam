@@ -61,7 +61,7 @@ const cardData = [
   },
 ];
 
-const headers = ["Event Name", "Date", "Participants Count", ""];
+const headers = ["Event Name", "Date", "Description", ""];
 
 const eventData = [
 
