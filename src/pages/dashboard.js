@@ -5,8 +5,8 @@ import Layout from "@/components/layout/layout";
 import Title from "@/components/common/title";
 import Table from "@/components/table";
 import { useAccount, useContractRead } from "wagmi";
-import eventABI from "../contracts/event.json"
-import { useEffect } from "react";
+import nftABI from "../contracts/launchpad.json"
+import { useEffect , useState} from "react";
 const Card = ({ heading, title, img, link, color }) => {
 
   return (
@@ -68,11 +68,15 @@ const eventData = [
 ];
 
 const Dashboard = () => {
-  const {address} = useAccount();
+  const [parsedData, setParsedData] = useState([]);
+
+  const [productData, setProductData] = useState([{}]);
+  const { address } = useAccount();
+
   const { data, isError, isLoading } = useContractRead({
-    address: "0x0d1Ef2b6C016d9187BcaC389f78CA69Eec23031c",
-    abi: eventABI,
-    functionName: "getEventsByUser",
+    address: "0x05fB2996555846F2b3b7cCac6E0b3F11C0fA56Fa",
+    abi: nftABI,
+    functionName: "getNFTsWithMetadataCreatedByCreator",
     args: [address],
     onSuccess: (data) => {
       console.log("Succes");
@@ -83,14 +87,20 @@ const Dashboard = () => {
   });
 
   const fetchData = async () => {
+
     for (let nft of data) {
-      eventData.push({
-        name:nft.name,
-        date:nft.date,
-        participants:nft.description
-      })
-      console.log(data);
+   
+      const response = await fetch(nft.uri);
+      const pd = await response.json();
+            eventData.push({
+        name: pd.name,
+        description: pd.description,
+        image: pd.image,
+        price: parseFloat(nft.nftPrice)
+      });
+      console.log(eventData);
     }
+    setProductData(eventData);
   };
 
   useEffect(() => {
@@ -117,7 +127,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <Table headers={headers} data={eventData} />
+        <Table headers={headers} data={productData} />
       </div>
     </Layout>
   );
