@@ -72,7 +72,7 @@ const Event = () => {
                     if (isLobbyJoined) {
                       joinRoom();
                     } else {
-                      fetch("http://localhost:3000/api/access-token", {
+                      fetch("/api/access-token", {
                         method: "POST",
                         body: JSON.stringify({
                           roomId: roomid,
