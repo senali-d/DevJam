@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from "@chakra-ui/react";
 import { useAccount, useContractRead } from "wagmi";
-import eventABI from "../contracts/event.json"
+import eventABI from "../contracts/event.json";
 import { useEffect } from "react";
 import {
   Modal,
@@ -11,50 +11,43 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-} from '@chakra-ui/react';
-import {
-  BiLinkExternal,
-} from "react-icons/bi";
+} from "@chakra-ui/react";
 import Button from "@/components/form-elements/button";
 import Layout from "@/components/layout/layout";
-import Link from "next/link";
 
-const Card = ({ date, title, img, onClick }) => {
+const Card = ({ key, date, title, img, onClick }) => {
   console.log(img);
   return (
-    <div className="event-card w-[90%] md:w-[31%] flex flex-col mb-[2%] mr-[2%] rounded-t-[30px]">
+    <div
+      className="event-card w-[90%] md:w-[31%] flex flex-col mb-[2%] mr-[2%] rounded-t-[30px]"
+      key={key}
+    >
       <div
-        className={`flex flex-col items-center bg-[url('https://bafybeidesonqkwje4yqi6apweudjnkbck2rmgypezqebl5t42hibvt2psu.ipfs.w3s.link/PolygonGuildVadodara.png')] bg-cover bg-center bg-no-repeat rounded-t-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[200px]`}
+        className={`flex flex-col items-center bg-cover bg-center bg-no-repeat rounded-t-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[200px]`}
+        style={{ backgroundImage: `url(${img})` }}
       >
         <div className="event-detail hidden flex-col items-center justify-center bg-[#00000090] w-full min-h-[100px] md:min-h-[200px]">
           <div className="font-bold text-xl mb-2 text-center text-[#ccc]">
             {title}
           </div>
           <div className="w-fit">
-            <Button label="Create Event" onClick={onClick} />
+            <Button label="Get ticket" onClick={onClick} />
           </div>
         </div>
       </div>
-      <div className="bg-[#3d7f9150] dark:bg-white flex w-full flex-col items-center justify-center rounded-b-[30px]">
-        <p className="dark:text-[#5b7a8a] text-[#3d7f91] text-xl py-2">{title}</p>
+      <div className="bg-[#fefefe60] dark:bg-white/90 flex w-full flex-col items-center justify-center rounded-b-[30px]">
+        <p className="text-[#7B3FE4] text-xl py-2">{title}</p>
         <div className="flex w-full px-2 pb-5">
-          <div className="flex w-1/2">
-            <p className="dark:text-[#5b7a8a] text-[#3d7f91]">{date}</p>
-          </div>
-          <div className="flex w-1/2 justify-end">
-            <Link href="/">
-              <BiLinkExternal size={25} />
-            </Link>
-          </div>
+          <p className="text-[#7B3FE4] w-full font-semibold text-center">
+            {date}
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-const cardData = [
-
-];
+const cardData = [];
 
 function ModalComponent({ isOpen, onClose, data, onClick }) {
   return (
@@ -63,29 +56,30 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <div className="text-[##3d7f91]">{data?.title}</div>
+            <div className="text-[#a13bf7]">{data?.title}</div>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <div className="text-[##3d7f91]">{data?.date}</div>
-            <div className="text-[##3d7f91]">{data?.description}</div>
+            <div className="text-gray-600 border-2 w-fit rounded-2xl border-[#a13bf7] py-1 px-2">
+              {data?.date}
+            </div>
+            <div className="text-gray-700">{data?.description}</div>
           </ModalBody>
 
           <ModalFooter>
             <div className="w-fit">
-              <Button label="Attend" onClick={onClick} />
+              <Button label="Buy" onClick={onClick} />
             </div>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </>
-  )
+  );
 }
 
-
 const Explore = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [selectedEvent, setSelectedEvent] = useState()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedEvent, setSelectedEvent] = useState();
   const { address } = useAccount();
   const { data, isError, isLoading } = useContractRead({
     address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
@@ -101,14 +95,14 @@ const Explore = () => {
 
   const fetchData = async () => {
     for (let event of data) {
-      console.log(data)
+      console.log(data);
       if (data.length > cardData.length) {
         cardData.push({
           title: event.name,
           date: event.date,
           description: event.description,
-          img: event.posterURL
-        })
+          img: event.posterURL,
+        });
       }
       console.log(cardData);
     }
@@ -116,25 +110,32 @@ const Explore = () => {
 
   useEffect(() => {
     if (data) {
-      fetchData()
+      fetchData();
     }
   }, [data]);
+
   return (
     <Layout headTitle="Explore Event">
       <div className="flex flex-col flex-wrap md:flex-row items-center md:items-start md:justify-start pl-[60px] lg:pl-0">
         {cardData.map((card) => (
           <Card
+            key={card.title}
             title={card.title}
             img={card.img}
             date={card.date}
             onClick={() => {
-              onOpen()
-              setSelectedEvent(card)
+              onOpen();
+              setSelectedEvent(card);
             }}
           />
         ))}
       </div>
-      <ModalComponent isOpen={isOpen} onClose={onClose} data={selectedEvent} onClick={()=>{}} />
+      <ModalComponent
+        isOpen={isOpen}
+        onClose={onClose}
+        data={selectedEvent}
+        onClick={() => {}}
+      />
     </Layout>
   );
 };
