@@ -48,10 +48,10 @@ body {
   border: 3px solid #f5f5f5;
 }
 
-.event-card:hover .event-detail{
+.event-card:hover .event-detail {
   display: flex;
 }
 
 .chakra-modal__content {
-  background-color: #ddedf1 !important;
+  background-color: #e8c4ff !important;
 }

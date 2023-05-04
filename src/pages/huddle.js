@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Layout from "@/components/layout/layout";
 import Button from "@/components/form-elements/button";
-import { BsFillMicFill, BsFillCameraVideoFill,  } from "react-icons/bs";
-import { HiPhoneMissedCall } from "react-icons/hi"
+import { BsFillMicFill, BsFillCameraVideoFill } from "react-icons/bs";
+import { HiPhoneMissedCall } from "react-icons/hi";
 
 const Card = ({ title, img }) => {
   return (
@@ -22,33 +22,6 @@ const Card = ({ title, img }) => {
   );
 };
 
-const cardData = [
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-  {
-    title: "Person",
-    img: "/token.png",
-  },
-];
-
 const Explore = () => {
   return (
     <Layout headTitle="Huddle" isFooter={false}>
@@ -65,12 +38,10 @@ const Explore = () => {
         </div>
         <div className="w-full flex flex-col mt-3 md:mb-0">
           <div className="flex flex-col space-y-5 sm:space-y-0 mb-5 sm:mb-0 sm:flex-row mx-auto items-center justify-center w-full px-5">
-            <div className="flex items-center justify-center sm:justify-start w-[50%] sm:min-h-[80px]">
+            <div className="w-[100%] space-x-2 sm:min-h-[80px] flex items-center justify-center sm:justify-center">
               <div className="w-fit">
                 <Button label="Join Lobby" onClick={() => {}} />
               </div>
-            </div>
-            <div className="w-[50%] space-x-2 sm:min-h-[80px] flex items-center justify-center sm:justify-end">
               <div
                 onClick={() => {}}
                 className="bg-gray-600 w-fit p-3 rounded-full flex justify-center sm:justify-start items-center hover:cursor-pointer"
