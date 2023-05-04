@@ -35,7 +35,7 @@ const Card = ({ key, date, title, img, onClick }) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#fefefe60] dark:bg-white/90 flex w-full flex-col items-center justify-center rounded-b-[30px]">
+      <div className="bg-[#fefefe60] dark:bg-white/95 flex w-full flex-col items-center justify-center rounded-b-[30px]">
         <p className="text-[#7B3FE4] text-xl py-2">{title}</p>
         <div className="flex w-full px-2 pb-5">
           <p className="text-[#7B3FE4] w-full font-semibold text-center">
@@ -46,8 +46,6 @@ const Card = ({ key, date, title, img, onClick }) => {
     </div>
   );
 };
-
-const cardData = [];
 
 function ModalComponent({ isOpen, onClose, data, onClick }) {
   return (
@@ -80,7 +78,7 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
 const Explore = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedEvent, setSelectedEvent] = useState();
-  const { address } = useAccount();
+  const [cardData, setData] = useState([])
   const { data, isError, isLoading } = useContractRead({
     address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
@@ -93,24 +91,9 @@ const Explore = () => {
     },
   });
 
-  const fetchData = async () => {
-    for (let event of data) {
-      console.log(data);
-      if (data.length > cardData.length) {
-        cardData.push({
-          title: event.name,
-          date: event.date,
-          description: event.description,
-          img: event.posterURL,
-        });
-      }
-      console.log(cardData);
-    }
-  };
-
   useEffect(() => {
     if (data) {
-      fetchData();
+      setData(data)
     }
   }, [data]);
 
@@ -119,9 +102,9 @@ const Explore = () => {
       <div className="flex flex-col flex-wrap md:flex-row items-center md:items-start md:justify-start pl-[60px] lg:pl-0">
         {cardData.map((card) => (
           <Card
-            key={card.title}
-            title={card.title}
-            img={card.img}
+            key={card.name}
+            title={card.name}
+            img={card.posterURL}
             date={card.date}
             onClick={() => {
               onOpen();
