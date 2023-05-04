@@ -32,10 +32,10 @@ export default function Home() {
               </h1>
               <div className="mb-5 text-4xl tracking-tight font-extrabold text-[#E4E4ED] sm:text-5xl md:text-7xl lg:px-32 space-y-5">
                 <h2 className="block xl:inline">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                  Start streaming your token-gated content
                 </h2>
                 <h3 className="block text-[#AEACC9] font-medium text-2xl lg:px-32">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                  Create your own tickets and stream with tokenization 
                 </h3>
               </div>
               <div>

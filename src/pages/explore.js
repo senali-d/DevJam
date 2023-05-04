@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { useAccount, useContractRead } from "wagmi";
 import eventABI from "../contracts/event.json";
 import { useEffect } from "react";
 import {
@@ -14,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import Button from "@/components/form-elements/button";
 import Layout from "@/components/layout/layout";
+import { useAccount, useSignMessage, useContractRead } from "wagmi";
+import { getAccessToken, getMessage } from "@huddle01/auth";
 
 const Card = ({ key, date, title, img, onClick }) => {
   console.log(img);
@@ -48,6 +49,14 @@ const Card = ({ key, date, title, img, onClick }) => {
 };
 
 function ModalComponent({ isOpen, onClose, data, onClick }) {
+  const { address } = useAccount();
+
+  const { signMessage } = useSignMessage({
+    onSuccess: async (tokenData) => {
+      const token = await getAccessToken(tokenData, address);
+      window.open(`/event/${data.roomId}/${token.accessToken}`);
+    },
+  });
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -66,7 +75,13 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
 
           <ModalFooter>
             <div className="w-fit">
-              <Button label="Buy" onClick={onClick} />
+              <Button
+                label="Attend"
+                onClick={async () => {
+                  const msg = await getMessage(address);
+                  signMessage({ message: msg.message });
+                }}
+              />
             </div>
           </ModalFooter>
         </ModalContent>
@@ -79,7 +94,7 @@ const Explore = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedEvent, setSelectedEvent] = useState();
   const [cardData, setData] = useState([]);
-  const { data, isError, isLoading } = useContractRead({
+  const { data } = useContractRead({
     address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
     functionName: "getAllEvents",

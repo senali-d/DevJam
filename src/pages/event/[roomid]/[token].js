@@ -68,7 +68,7 @@ const Event = () => {
                 <Button
                   label={isLobbyJoined ? "Start stream" : "Join Lobby"}
                   onClick={() => {
-                    isLobbyJoined ? joinRoom() : joinLobby(roomid);
+                    isLobbyJoined ? joinRoom() : joinLobby(roomid, token);
                   }}
                 />
               </div>

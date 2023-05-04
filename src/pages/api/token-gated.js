@@ -9,7 +9,7 @@ const handler = async (req, res) => {
     }),
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": "Lgiukg7CvVMxgdlMRUnOGoWqzRmBv85i",
+      "x-api-key": "VwTZ4AGTxme9snANex9tep3NwvVMGfYd",
     },
   }).then((response) => {
     response.json().then((data) => {
