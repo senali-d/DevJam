@@ -26,7 +26,7 @@ const Event = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: "0x0d1Ef2b6C016d9187BcaC389f78CA69Eec23031c",
+    address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
     functionName: "createEvent",
     args: [

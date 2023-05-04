@@ -38,6 +38,51 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getAllEvents",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "posterURL",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "roomId",
+						"type": "string"
+					}
+				],
+				"internalType": "struct EventRegistry.Event[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",

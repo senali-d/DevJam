@@ -19,7 +19,7 @@ import Button from "@/components/form-elements/button";
 import Layout from "@/components/layout/layout";
 import Link from "next/link";
 
-const Card = ({ date,title, img, onClick }) => {
+const Card = ({ date, title, img, onClick }) => {
   console.log(img);
   return (
     <div className="event-card w-[90%] md:w-[31%] flex flex-col mb-[2%] mr-[2%] rounded-t-[30px]">
@@ -53,10 +53,10 @@ const Card = ({ date,title, img, onClick }) => {
 };
 
 const cardData = [
- 
+
 ];
 
-function ModalComponent({isOpen, onClose, data, onClick}) {
+function ModalComponent({ isOpen, onClose, data, onClick }) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -72,9 +72,9 @@ function ModalComponent({isOpen, onClose, data, onClick}) {
           </ModalBody>
 
           <ModalFooter>
-          <div className="w-fit">
-            <Button label="Attend" onClick={onClick} />
-          </div>
+            <div className="w-fit">
+              <Button label="Attend" onClick={onClick} />
+            </div>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -86,12 +86,11 @@ function ModalComponent({isOpen, onClose, data, onClick}) {
 const Explore = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [selectedEvent, setSelectedEvent] = useState()
-  const {address} = useAccount();
+  const { address } = useAccount();
   const { data, isError, isLoading } = useContractRead({
-    address: "0x0d1Ef2b6C016d9187BcaC389f78CA69Eec23031c",
+    address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
-    functionName: "getEventsByUser",
-    args: [address],
+    functionName: "getAllEvents",
     onSuccess: (data) => {
       console.log("Succes");
     },
@@ -103,12 +102,14 @@ const Explore = () => {
   const fetchData = async () => {
     for (let event of data) {
       console.log(data)
-      cardData.push({
-        title:event.name,
-        date:event.date,
-        description:event.description,
-        img:event.posterURL
-      })
+      if (data.length > cardData.length) {
+        cardData.push({
+          title: event.name,
+          date: event.date,
+          description: event.description,
+          img: event.posterURL
+        })
+      }
       console.log(cardData);
     }
   };
@@ -133,7 +134,7 @@ const Explore = () => {
           />
         ))}
       </div>
-      {/* <ModalComponent isOpen={isOpen} onClose={onClose} data={selectedEvent} onClick={()=>{}} /> */}
+      <ModalComponent isOpen={isOpen} onClose={onClose} data={selectedEvent} onClick={()=>{}} />
     </Layout>
   );
 };
