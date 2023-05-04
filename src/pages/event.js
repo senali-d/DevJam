@@ -75,7 +75,7 @@ const Event = () => {
         <Banner
           image="/event.png"
           title="EVENT"
-          description="Mint a token on a fixed supply Already have a token? Import token into DevJam"
+          description="Launch your own event on our platform and start streaming!!"
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
@@ -112,13 +112,13 @@ const Event = () => {
               client.put(files).then((cid) => {
                 console.log(cid);
                 setBanner(`https://${cid}.ipfs.w3s.link/${files[0].name}`);
-                fetch("http://localhost:3000/api/create-room", {
+                fetch("http://localhost:3000/api/token-gated", {
                   method: "POST",
                   body: JSON.stringify({
                     title: name,
                     tokenType: "ERC721",
                     chain: "POLYGON",
-                    contractAddress: nftaddress,
+                    contractAddress: "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d",
                   }),
                   headers: {
                     "Content-Type": "application/json",

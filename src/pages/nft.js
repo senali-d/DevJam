@@ -102,7 +102,7 @@ const Token = () => {
         <Banner
           image="/token.png"
           title="NFT"
-          description="Monetize your event registreation to attent."
+          description="Create your own tickets and sell it during event registration."
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
