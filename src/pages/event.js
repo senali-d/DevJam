@@ -112,7 +112,7 @@ const Event = () => {
               client.put(files).then((cid) => {
                 console.log(cid);
                 setBanner(`https://${cid}.ipfs.w3s.link/${files[0].name}`);
-                fetch("http://localhost:3000/api/token-gated", {
+                fetch("/api/token-gated", {
                   method: "POST",
                   body: JSON.stringify({
                     title: name,

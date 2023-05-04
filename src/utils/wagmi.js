@@ -7,6 +7,6 @@ export const client = createClient(
   getDefaultClient({
     autoConnect: true,
     appName: 'DovJam',
-    chains: [polygonMumbai,filecoinHyperspace],
+    chains: [filecoinHyperspace],
   })
 );
