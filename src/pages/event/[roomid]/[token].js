@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Layout from "@/components/layout/layout";
 import Button from "@/components/form-elements/button";
 import { HiPhoneMissedCall } from "react-icons/hi";
@@ -12,25 +11,6 @@ import {
   useRoom,
 } from "@huddle01/react/hooks";
 import { Audio, Video } from "@huddle01/react/components";
-
-// call join room in serverside props
-
-const Card = ({ title, img }) => {
-  return (
-    <div className="min-w-[50%] md:min-w-[33%] mr-3 md:mr-0 md:w-[90%] flex flex-col mb-3">
-      <div className="flex flex-col items-center bg-gray-300 rounded-[30px] overflow-hidden shadow-lg  min-h-[100px] md:min-h-[150px]">
-        <div className="flex mx-auto justify-center w-[100%]">
-          <Image src={img} width="120" height="100" alt="Icon" />
-        </div>
-        <div className="px-6 py-4 w-full">
-          <div className="font-bold text-xl mb-2 text-center text-[#3d7f91]">
-            {title}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Event = () => {
   const { initialize, isInitialized } = useHuddle01();
