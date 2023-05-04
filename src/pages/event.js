@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Layout from "@/components/layout/layout";
 import Input from "@/components/form-elements/input";
@@ -8,7 +8,7 @@ import Upload from "@/components/form-elements/upload";
 import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import eventAddress from "../utils/constant";
-import eventABI from "../contracts/event.json"
+import eventABI from "../contracts/event.json";
 import {
   useAccount,
   useContractWrite,
@@ -23,20 +23,14 @@ const Event = () => {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [nftaddress, setAddress] = useState("");
+  const [roomId, setRoomId] = useState("");
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
     address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
     functionName: "createEvent",
-    args: [
-      banner,
-      name,
-      date,
-      description,
-      nftaddress,
-      "123"
-    ],
+    args: [banner, name, date, description, nftaddress, roomId],
 
     onError: (error) => {
       console.log(banner, name, date, description, nftaddress, "123");
@@ -85,20 +79,24 @@ const Event = () => {
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
-        {banner == "" ? (<Image
-            className="mx-auto"
-            src={banner !== "" ? banner : "/token.png"}
-            alt="preview"
-            width={200}
-            height={200}
-          />) : (<Image
-            className="mx-auto"
-            src={banner !== "" ? banner : "/token.png"}
-            loader={() => banner}
-            alt="preview"
-            width={200}
-            height={200}
-          />)}
+          {banner == "" ? (
+            <Image
+              className="mx-auto"
+              src={banner !== "" ? banner : "/token.png"}
+              alt="preview"
+              width={200}
+              height={200}
+            />
+          ) : (
+            <Image
+              className="mx-auto"
+              src={banner !== "" ? banner : "/token.png"}
+              loader={() => banner}
+              alt="preview"
+              width={200}
+              height={200}
+            />
+          )}
           <Upload
             id="banner"
             name="banner"
@@ -114,8 +112,22 @@ const Event = () => {
               client.put(files).then((cid) => {
                 console.log(cid);
                 setBanner(`https://${cid}.ipfs.w3s.link/${files[0].name}`);
+                fetch("http://localhost:3000/api/create-room", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    title: name,
+                    tokenType: "ERC721",
+                    chain: "POLYGON",
+                    contractAddress: nftaddress,
+                  }),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }).then(async (res) => {
+                  const data = await res.json();
+                  setRoomId(data.data.roomId);
+                });
               });
-
             }}
           />
           <Input
@@ -126,7 +138,7 @@ const Event = () => {
             type="text"
             onChange={(e) => {
               setName(e.target.value);
-             }}
+            }}
             helper="Event name helper"
           />
           <Input
@@ -135,7 +147,7 @@ const Event = () => {
             label="Event Date"
             placeholder="Event Date"
             type="date"
-            onChange={(e) => { 
+            onChange={(e) => {
               setDate(e.target.value);
             }}
             helper="Event date helper"
@@ -146,7 +158,7 @@ const Event = () => {
             label="Event Description"
             placeholder="Event Description"
             type="text"
-            onChange={(e) => { 
+            onChange={(e) => {
               setDescription(e.target.value);
             }}
             helper="Description description helper"
@@ -157,15 +169,22 @@ const Event = () => {
             label="Contract Address"
             placeholder="0dqrfwtgdhzsfsdnwbxvwbyn"
             type="text"
-            onChange={(e) => { 
+            onChange={(e) => {
               setAddress(e.target.value);
             }}
             helper="Contract Address helper"
           />
-          <Button label="Create Event"  onClick={ (e) => {
+          <Button
+            label="Create Event"
+            onClick={(e) => {
               e.preventDefault();
-              write();
-            }}/>
+              if (roomId !== "") {
+                write();
+              } else {
+                alert("Please fill up all details");
+              }
+            }}
+          />
         </form>
       </div>
     </Layout>
