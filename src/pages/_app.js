@@ -10,9 +10,9 @@ export default function App({ Component, pageProps }) {
     <ThemeProvider attribute="class">
       <WagmiConfig client={client}>
         <ConnectKitProvider theme="retro">
-            <ChakraProvider>
-              <Component {...pageProps} />
-            </ChakraProvider>
+          <ChakraProvider>
+            <Component {...pageProps} />
+          </ChakraProvider>
         </ConnectKitProvider>
       </WagmiConfig>
     </ThemeProvider>
