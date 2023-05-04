@@ -7,8 +7,8 @@ import Button from "@/components/form-elements/button";
 import Upload from "@/components/form-elements/upload";
 import Banner from "@/components/banner";
 import { Web3Storage } from "web3.storage";
-import  ABI  from "../contracts/launchpad.json"
-import  contracAddress  from "../utils/constant";
+import ABI from "../contracts/launchpad.json";
+import contracAddress from "../utils/constant";
 import { useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import {
@@ -19,14 +19,14 @@ import {
 } from "wagmi";
 
 const Token = () => {
-  const [image, setImage] = useState('')
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [supply, setSupply] = useState('')
-  const [price, setPrice] = useState('')
+  const [image, setImage] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [supply, setSupply] = useState("");
+  const [price, setPrice] = useState("");
   const [maxSupplyFlag, setMaxSupplyFlag] = useState(true);
   const { address } = useAccount();
-  const [uri, setUri] = useState('');
+  const [uri, setUri] = useState("");
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
@@ -71,7 +71,7 @@ const Token = () => {
       .then(async (cid) => {
         setUri(`https://${cid}.ipfs.w3s.link/metadata.json`);
       });
-      console.log(uri);
+    console.log(uri);
   };
 
   useEffect(() => {
@@ -106,20 +106,24 @@ const Token = () => {
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
         />
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
-          {image == "" ? (<Image
-            className="mx-auto"
-            src={image !== "" ? image : "/token.png"}
-            alt="preview"
-            width={200}
-            height={200}
-          />) : (<Image
-            className="mx-auto"
-            src={image !== "" ? image : "/token.png"}
-            loader={() => image}
-            alt="preview"
-            width={200}
-            height={200}
-          />)}
+          {image == "" ? (
+            <Image
+              className="mx-auto"
+              src={image !== "" ? image : "/token.png"}
+              alt="preview"
+              width={200}
+              height={200}
+            />
+          ) : (
+            <Image
+              className="mx-auto"
+              src={image !== "" ? image : "/token.png"}
+              loader={() => image}
+              alt="preview"
+              width={200}
+              height={200}
+            />
+          )}
           <Upload
             id="image"
             name="image"
@@ -136,7 +140,6 @@ const Token = () => {
                 console.log(cid);
                 setImage(`https://${cid}.ipfs.w3s.link/${files[0].name}`);
               });
-
             }}
           />
           <Input
@@ -163,7 +166,7 @@ const Token = () => {
           />
           <Checkbox
             onChange={(e) => {
-              setMaxSupplyFlag(e.target.checked)
+              setMaxSupplyFlag(e.target.checked);
             }}
             defaultChecked
             className="text-[#5b7a8a] dark:text-[#3d7f91]"
@@ -185,12 +188,12 @@ const Token = () => {
             id="price"
             name="price"
             label="Price"
-            placeholder="1 5IRE"
+            placeholder="1 TFIL"
             type="number"
             onChange={(e) => {
               setPrice(e.target.value);
             }}
-            helper="Recommend initial NFT Price - 2 5IRE, No '5IRE' Symbol Required."
+            helper="Recommend initial NFT Price - 2 TFIL, No 'TFIL' Symbol Required."
           />
           <button
             onClick={async (e) => {
@@ -202,7 +205,7 @@ const Token = () => {
             Upload
           </button>
           <button
-            onClick={ (e) => {
+            onClick={(e) => {
               e.preventDefault();
               write();
             }}

@@ -73,7 +73,7 @@ const Event = () => {
     <Layout headTitle="Create Token">
       <div className="flex flex-col space-y-8 justify-center items-center max-w-[800px] mx-auto pb-32 pl-[60px] lg:pl-0">
         <Banner
-          image="/token.png"
+          image="/event.png"
           title="EVENT"
           description="Mint a token on a fixed supply Already have a token? Import token into DevJam"
           style="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-500"
@@ -81,10 +81,10 @@ const Event = () => {
         <form className="flex flex-col space-y-3 w-[90%] md:max-w-[600px] mx-auto">
           {banner == "" ? (
             <Image
-              className="mx-auto"
-              src={banner !== "" ? banner : "/token.png"}
+              className="mx-auto rounded-xl"
+              src={banner !== "" ? banner : "/poster.jpeg"}
               alt="preview"
-              width={200}
+              width={300}
               height={200}
             />
           ) : (

@@ -78,7 +78,7 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
 const Explore = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedEvent, setSelectedEvent] = useState();
-  const [cardData, setData] = useState([])
+  const [cardData, setData] = useState([]);
   const { data, isError, isLoading } = useContractRead({
     address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
     abi: eventABI,
@@ -93,7 +93,7 @@ const Explore = () => {
 
   useEffect(() => {
     if (data) {
-      setData(data)
+      setData(data);
     }
   }, [data]);
 
