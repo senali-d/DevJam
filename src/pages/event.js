@@ -27,7 +27,7 @@ const Event = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
+    address: "0x1ea13EA1a490e9667E78340ff74d704242fDCA6A",
     abi: eventABI,
     functionName: "createEvent",
     args: [banner, name, date, description, nftaddress, roomId],

@@ -53,6 +53,7 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
 
   const { signMessage } = useSignMessage({
     onSuccess: async (tokenData) => {
+    
       const token = await getAccessToken(tokenData, address);
       window.open(`/event/${data.roomId}/${token.accessToken}`);
     },
@@ -78,8 +79,13 @@ function ModalComponent({ isOpen, onClose, data, onClick }) {
               <Button
                 label="Attend"
                 onClick={async () => {
-                  const msg = await getMessage(address);
-                  signMessage({ message: msg.message });
+                  if (data.creator == address) {
+                    window.open(`/stream/${data.roomId}`);
+                  }else {
+                    const msg = await getMessage(address);
+                    signMessage({ message: msg.message });
+                  }
+                
                 }}
               />
             </div>
@@ -95,10 +101,11 @@ const Explore = () => {
   const [selectedEvent, setSelectedEvent] = useState();
   const [cardData, setData] = useState([]);
   const { data } = useContractRead({
-    address: "0x4cAD6d1fA95e0090c079D515272c9b23DEF8b298",
+    address: "0x1ea13EA1a490e9667E78340ff74d704242fDCA6A",
     abi: eventABI,
     functionName: "getAllEvents",
     onSuccess: (data) => {
+      
       console.log("Succes");
     },
     onError: (error) => {
@@ -108,6 +115,7 @@ const Explore = () => {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setData(data);
     }
   }, [data]);
